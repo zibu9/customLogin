@@ -19,5 +19,5 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', [HomeController::class, 'login']);
-Route::get('/register', [HomeController::class, 'register']);
+Route::get('/login', [HomeController::class, 'login'])->name('login');
+Route::get('/register', [HomeController::class, 'register'])->name('register');
