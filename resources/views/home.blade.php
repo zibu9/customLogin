@@ -2,13 +2,13 @@
 
 @section('content')
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-        <div class="container-fluid">
-        <a class="navbar-brand">Custom Login</a>
+        <div class="container">
+            <a class="navbar-brand">Custom Login</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item mr-auto">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
@@ -19,6 +19,7 @@
             </div>
         </div>
     </nav>
+
     <div class="container">
         <div class="alert alert-info mt-5" role="alert">
             <h4 class="alert-heading">Bienvenue!</h4>
