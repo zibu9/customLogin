@@ -19,7 +19,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1" value="{{ old('name') }}">Password</span>
-                            <input type="password" name="paassword" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

@@ -10,6 +10,11 @@
                 <form action="{{ route('register.store') }}" method="POST">
                     @csrf
                     <div class="card-body">
+                        @if(session('success'))
+                            <div class="alert alert-success alert-dismissible fade show">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1" value="{{ old('name') }}">Name</span>
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" value="{{ old('name') }}">
@@ -34,7 +39,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="input-group mb-3">
-                            <button type="submit" class="btn btn-primary btn-sm">Login</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Register</button>
                         </div>
                     </div>
                 </form>

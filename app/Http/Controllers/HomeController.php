@@ -34,6 +34,30 @@ class HomeController extends Controller
 
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);
-        return back()->with('ajouter avec success');
+        return back()->with('success', 'ajouter avec success');
+    }
+
+    public function loginPost(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('home');
+        } else {
+            return redirect()->back()->withInput($request->only('email'))->withErrors([
+                'email' => 'Les informations d\'identification fournies ne correspondent pas à nos enregistrements.',
+            ]);
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/login');
     }
 }

@@ -18,9 +18,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => 'guest'], function (){
+    Route::get('/login', [HomeController::class, 'login'])->name('login');
+    Route::get('/register', [HomeController::class, 'register'])->name('register');
+    Route::post('/register', [HomeController::class, 'registerPost'])->name('register.store');
+    Route::post('/login', [HomeController::class, 'loginPost'])->name('login.store');
 
-Route::get('/login', [HomeController::class, 'login'])->name('login');
-Route::get('/register', [HomeController::class, 'register'])->name('register');
-Route::post('/register', [HomeController::class, 'registerPost'])->name('register.store');
-Route::post('/login', [HomeController::class, 'loginPost'])->name('login.store');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
+
+
+Route::group(['middleware' => 'auth'], function (){
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+});
+
