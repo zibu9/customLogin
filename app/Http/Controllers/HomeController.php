@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -25,20 +26,14 @@ class HomeController extends Controller
 
     public function registerPost(Request $request)
     {
-        $this->validate($request, [
+        $validatedData = $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
         ]);
 
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-        ]);
-
-        Auth::login($user);
-
-        return redirect('/home');
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        User::create($validatedData);
+        return back()->with('ajouter avec success');
     }
 }
